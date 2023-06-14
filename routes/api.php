@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ShelterCatController;
 use App\Http\Controllers\ShelterController;
+use App\Http\Controllers\ShelterEmployeeController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('shelters')->name('shelters.')->group(function () {
@@ -28,6 +29,14 @@ Route::prefix('shelters')->name('shelters.')->group(function () {
         });
 
         Route::prefix('employees')->name('employees.')->group(function () {
+
+            Route::get('', [ShelterEmployeeController::class, 'index'])->name('index');
+            Route::post('', [ShelterEmployeeController::class, 'store'])->name('store');
+
+            Route::get('{cat}', [ShelterEmployeeController::class, 'show'])->name('show')->scopeBindings();
+            Route::put('{cat}', [ShelterEmployeeController::class, 'update'])->name('update');
+
+            Route::delete('{cat}', [ShelterEmployeeController::class, 'destroy'])->name('destroy')->scopeBindings();
 
         });
 

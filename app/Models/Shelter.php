@@ -15,4 +15,9 @@ class Shelter extends Model
     {
         return $this->hasMany(ShelterCat::class);
     }
+
+    public function employees(): HasMany
+    {
+        return $this->hasMany(ShelterEmployee::class);
+    }
 }
