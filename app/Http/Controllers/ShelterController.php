@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Shelter\StoreRequest;
-use App\Http\Requests\Shelter\UpdateRequest;
+use App\Http\Requests\ShelterRequest;
 use App\Http\Resources\ShelterResource;
 use App\Models\Shelter;
 
@@ -14,7 +13,7 @@ class ShelterController extends Controller
         return ShelterResource::collection(Shelter::paginate(15));
     }
 
-    public function store(StoreRequest $request)
+    public function store(ShelterRequest $request)
     {
         return new ShelterResource(Shelter::create($request->validated()));
     }
@@ -24,7 +23,7 @@ class ShelterController extends Controller
         return new ShelterResource($shelter);
     }
 
-    public function update(UpdateRequest $request, Shelter $shelter)
+    public function update(ShelterRequest $request, Shelter $shelter)
     {
         $shelter->update($request->validated());
 
