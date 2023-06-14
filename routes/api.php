@@ -1,19 +1,19 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ShelterCatController;
+use App\Http\Controllers\ShelterController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+Route::prefix('shelters')->name('shelters.')->group(function () {
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::get('', [ShelterController::class, 'index'])->name('index');
+    Route::post('', [ShelterController::class, 'store'])->name('store');
+
+    Route::prefix('{shelter}')->group(function () {
+
+        Route::get('', [ShelterController::class, 'show'])->name('show');
+        Route::put('', [ShelterController::class, 'update'])->name('update');
+        Route::delete('', [ShelterController::class, 'destroy'])->name('destroy');
+
+    });
 });
